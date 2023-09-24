@@ -79,43 +79,35 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 
 // Listen for messages from the options page
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message.addLink) {
-        // Add a new link
-        customLinks[message.addLink.name] = message.addLink.url;
-        updateContextMenuItems();
-        sendResponse({ success: true });
+    // Retrieve the current state of customLinks from storage.sync
+    chrome.storage.sync.get(["customLinks"], function (data) {
+        // Update the global customLinks object with the retrieved data
+        Object.assign(customLinks, data.customLinks || {});
 
-        // Additionally, update the storage.sync with the updated customLinks
+        if (message.addLink) {
+            // Add a new link
+            customLinks[message.addLink.name] = message.addLink.url;
+            sendResponse({ success: true });
+        } else if (message.updateLink) {
+            // Update an existing link
+            const linkName = message.updateLink.name;
+            customLinks[linkName] = message.updateLink.url;
+            sendResponse({ success: true });
+        } else if (message.deleteLink) {
+            // Delete an existing link
+            const linkName = message.deleteLink.name;
+            delete customLinks[linkName];
+            sendResponse({ success: true });
+        }
+
+        // Update the storage.sync with the updated customLinks
         chrome.storage.sync.set({ customLinks }, function () {
             if (chrome.runtime.lastError) {
                 console.error(chrome.runtime.lastError);
+            } else {
+                // Update the context menu after the new link is saved
+                updateContextMenuItems();
             }
         });
-    } else if (message.updateLink) {
-        // Update an existing link
-        const linkName = message.updateLink.name;
-        customLinks[linkName] = message.updateLink.url;
-        updateContextMenuItems();
-        sendResponse({ success: true });
-
-        // Additionally, update the storage.sync with the updated customLinks
-        chrome.storage.sync.set({ customLinks }, function () {
-            if (chrome.runtime.lastError) {
-                console.error(chrome.runtime.lastError);
-            }
-        });
-    } else if (message.deleteLink) {
-        // Delete an existing link
-        const linkName = message.deleteLink.name;
-        delete customLinks[linkName];
-        updateContextMenuItems();
-        sendResponse({ success: true });
-
-        // Additionally, update the storage.sync with the updated customLinks
-        chrome.storage.sync.set({ customLinks }, function () {
-            if (chrome.runtime.lastError) {
-                console.error(chrome.runtime.lastError);
-            }
-        });
-    }
+    });
 });
