@@ -10,9 +10,19 @@ function updateOptionsPage() {
 
         for (const linkName in customLinks) {
             const listItem = document.createElement("li");
-            listItem.textContent = linkName;
+            const linkUrl = customLinks[linkName];
+
+            // Create an anchor element to make it a clickable link
+            const linkElement = document.createElement("a");
+            linkElement.href = linkUrl;
+            linkElement.textContent = linkName;
+            linkElement.target = "_blank"; // Open links in a new tab
+
+            // Append the anchor element to the list item
+            listItem.appendChild(linkElement);
             linkList.appendChild(listItem);
         }
+
     });
 }
 

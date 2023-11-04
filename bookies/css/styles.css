@@ -2,11 +2,21 @@
     transition: all 0.2s ease;
 }
 
-#linkList li {
+#linkList li a {
+    display: block;
     color: rgba(0, 0, 0, 0.5);
     font-weight: 500;
     font-size: 12px;
     padding: 8px 16px;
     background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.11);
     border-radius: 99px;
+}
+
+#linkList li a:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+#linkList li a:active {
+    background-color: rgba(0, 0, 0, 0.1);
 }
