@@ -3,6 +3,7 @@
 }
 
 #linkList li a {
+    display: block;
     color: rgba(0, 0, 0, 0.5);
     font-weight: 500;
     font-size: 12px;
