@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../font-awesome/css/solid.css">
 </head>
 
-<body class="bg-slate-100">
+<body class="bg-slate-100 relative">
     <main class="w-[480px] h-fit flex flex-col items-center justify-center p-4 gap-2">
         <div
             class="max-w-lg w-full flex flex-row items-center justify-between py-4 px-8 rounded-xl bg-white shadow-2xl">
@@ -59,6 +59,24 @@
         <div class="max-w-lg w-full h-fit py-4 px-8 rounded-xl bg-white shadow-2xl">
             <ul id="linkList" class="flex flex-row items-center justify-start flex-wrap gap-2"></ul>
         </div>
+
+        <!-- Alert modal -->
+        <div id="customModal"
+            class="hidden absolute h-full w-full z-40 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
+            <div class="relative z-40 w-fit modal flex items-center gap-2 bg-red-500 p-4 rounded-xl">
+                <p class="flex items-center gap-2 text-white">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="modalMessage" class="font-medium">
+                        This is a warning!
+                    </span>
+                </p>
+                <span class="close cursor-pointer" id="closeModal">
+                    <i
+                        class="fa-solid fa-xmark text-black text-sm leading-none text-opacity-40 hover:text-opacity-20 ml-4"></i>
+                </span>
+            </div>
+        </div>
+
     </main>
 
     <script src="../js/options.js"></script>
