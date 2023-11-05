@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "Bookies",
-    "version": "0.2.2",
-    "description": "Add custom links to the context menu",
+    "version": "0.2.3",
+    "description": "Bookies is a browser extension that allows you to conveniently add and personalize your favorite links. Access them with ease through your browser's context menu.",
     "permissions": [
         "contextMenus",
         "activeTab",
