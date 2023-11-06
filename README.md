@@ -1,6 +1,6 @@
 # Bookies
 
-Bookies is a browser extension that provides a convenient way to manage and personalize your favorite links, making them easily accessible through your browser's context menu or through your browser's pinned extensions toolbar.
+Bookmark easily with context menu & ✅ through toolbar.
 
 ## Getting Started
 
