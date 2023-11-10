@@ -1,6 +1,6 @@
 # Bookies
 
-Bookmark easily with context menu & ✅ through toolbar.
+Bookmark easily with context menu & through toolbar ✅
 
 ## Getting Started
 
